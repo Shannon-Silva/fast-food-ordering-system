@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="smsEP" groupId="com.example.FastFoodOnline.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/smsEP.xml</file>
+    </artifact>
+    <artifact name="FastFoodOnline" groupId="com.example.FastFoodOnline.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/FastFoodOnline.xml</file>
+    </artifact>
+    <artifact name="mailEP" groupId="com.example.FastFoodOnline.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/mailEP.xml</file>
+    </artifact>
+    <artifact name="LoginEP" groupId="com.example.FastFoodOnline.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/LoginEP.xml</file>
+    </artifact>
+    <artifact name="foodEP" groupId="com.example.FastFoodOnline.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/foodEP.xml</file>
+    </artifact>
+    <artifact name="mobileEP" groupId="com.example.FastFoodOnline.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/mobileEP.xml</file>
+    </artifact>
+    <artifact name="bankEP" groupId="com.example.FastFoodOnline.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/bankEP.xml</file>
+    </artifact>
+</artifacts>

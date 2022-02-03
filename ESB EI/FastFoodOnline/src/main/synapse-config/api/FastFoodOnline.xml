@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/food-service" name="FastFoodOnline" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="OPTIONS POST" uri-template="/sms">
+        <inSequence>
+            <send>
+                <endpoint key="smsEP"/>
+            </send>
+        </inSequence>
+        <outSequence>
+            <send/>
+        </outSequence>
+        <faultSequence/>
+    </resource>
+    <resource methods="OPTIONS POST" uri-template="/mail">
+        <inSequence>
+            <send>
+                <endpoint key="mailEP"/>
+            </send>
+        </inSequence>
+        <outSequence>
+            <send/>
+        </outSequence>
+        <faultSequence/>
+    </resource>
+    <resource methods="GET" uri-template="/login">
+        <inSequence>
+            <send>
+                <endpoint key="LoginEP"/>
+            </send>
+        </inSequence>
+        <outSequence>
+            <send/>
+        </outSequence>
+        <faultSequence/>
+    </resource>
+    <resource methods="OPTIONS GET" uri-template="/food">
+        <inSequence>
+            <send>
+                <endpoint key="foodEP"/>
+            </send>
+        </inSequence>
+        <outSequence>
+            <send/>
+        </outSequence>
+        <faultSequence/>
+    </resource>
+    <resource methods="POST" uri-template="/payment">
+        <inSequence>
+            <property description="SelectPaymentMethod" expression="json-eval($.paymentProperty)" name="paymentProperty" scope="default" type="STRING"/>
+            <switch source="get-property('PaymentProperty')">
+                <case regex="mobile">
+                    <log description="mobileRouter" level="custom">
+                        <property expression="fn:concat('Routing to ', get-property('paymentProperty'))" name="message"/>
+                    </log>
+                    <send>
+                        <endpoint key="mobileEP"/>
+                    </send>
+                </case>
+                <case regex="bank">
+                    <log description="bankRouter" level="custom">
+                        <property expression="fn:concat('Routing to ', get-property('paymentProperty'))" name="message"/>
+                    </log>
+                    <send>
+                        <endpoint key="bankEP"/>
+                    </send>
+                </case>
+                <default>
+                    <log description="FaultLog" level="custom">
+                        <property expression="fn:concat('Invalid method - ', get-property('paymentProperty'))" name="message"/>
+                    </log>
+                    <respond description="FaultResponse"/>
+                </default>
+            </switch>
+        </inSequence>
+        <outSequence>
+            <send/>
+        </outSequence>
+        <faultSequence/>
+    </resource>
+</api>
